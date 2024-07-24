@@ -107,7 +107,7 @@ protected:
 
 		// Pipelines [Shader couples]
 		Pray.init(this, &VD, "shaders/RayVert.spv", "shaders/RayFrag.spv", { &DSLglobal, &DSLray });
-		Pray.setAdvancedFeatures(VK_COMPARE_OP_LESS, VK_POLYGON_MODE_FILL, VK_CULL_MODE_NONE, false); 
+		Pray.setAdvancedFeatures(VK_COMPARE_OP_LESS, VK_POLYGON_MODE_FILL, VK_CULL_MODE_NONE, false);
 
 		// Models
 
@@ -217,6 +217,11 @@ protected:
 		bool fire = false;
 		getSixAxis(deltaT, m, r, fire);
 
+		if (m != glm::vec3(0.0f, 0.0f, 0.f) || r != glm::vec3(0.0f, 0.0f, 0.f)) {
+			numberOfSamples = 0; //in questo caso ci serve = 0 almeno nella shader la media pesata non considera il previous frame (perchè ci stiamo muovendo)
+			std::cout << "moving" << "\n";
+		}
+
 		static float autoTime = true;
 		static float cTime = 0.0;
 		const float turnTime = 36.0f;
@@ -270,7 +275,7 @@ protected:
 		gubo.width = windowWidth;
 		DSGlobal.map(currentImage, &gubo, 0);
 		numberOfSamples += 1;
-		std::cout << numberOfSamples << "\n";
+		//std::cout << numberOfSamples << "\n";
 
 		// objects
 		UniformBufferObject ubo{};
