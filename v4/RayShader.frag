@@ -5,7 +5,7 @@
 #define PLANE 1
 
 #define MAX_DEPTH 5 //prima era 10
-#define N_OBJECTS 9
+#define N_OBJECTS 10
 
 const float NON_DIELECTRIC_REFRACTIVE_INDEX = 1e-6; //indice di rifrazione da associare a elementi non dielettrici, di modo tale che il metodo di isTotalRiflession() ? sia sempre True per loro
 
@@ -363,7 +363,7 @@ void main() {
 	materialLight.dieletricConstant = NON_DIELECTRIC_REFRACTIVE_INDEX;
 	
 	RayTracingMaterial material;
-	material.color = vec4(1.0, 0.0, 1.0, 1.0);
+	material.color = vec4(1.0, 1.0, 1.0, 1.0);
 	material.emissionColor = vec4(0.0, 0.0, 0.0, 0.0); 
 	material.emissionStrength = 0.0; 
 	material.smoothness = 0.0;
@@ -372,23 +372,23 @@ void main() {
 	
 	// Definizione di oggetti    
 	//STANZE
+	/*
 	geometries[0] = Geometry(PLANE,  material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box1
-	geometries[0].material.color = vec4(1.0, 1.0, 1.0, 1.0);
 	geometries[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box1
 	geometries[1].material.color = vec4(1.0, 0.0, 0.0, 1.0);
 	geometries[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 10.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box1
 	geometries[2].material.color = vec4(0.0, 1.0, 0.0, 1.0);
 	geometries[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 0.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box1
-	geometries[3].material.color = vec4(1.0, 1.0, 1.0, 1.0);
 	geometries[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 0.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box1
-	geometries[4].material.color = vec4(1.0, 1.0, 1.0, 1.0);
-	/* commentato le altre 2 stanze per motivi di performance
-	geometries[5] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box2
-	geometries[6] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box2
-	geometries[7] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 22.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box2
-	geometries[8] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 12.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box2
-	geometries[9] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 12.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box2
-	
+	*/
+	geometries[0] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box2
+	geometries[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box2
+	geometries[1].material.color = vec4(1.0, 0.0, 1.0, 1.0);
+	geometries[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 22.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box2
+	geometries[2].material.color = vec4(1.0, 0.0, 0.0, 1.0);
+	geometries[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 12.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box2
+	geometries[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 12.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box2
+	/*
 	geometries[10] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 24.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box3
 	geometries[11] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 24.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box3
 	geometries[12] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 34.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box3
@@ -396,7 +396,8 @@ void main() {
 	geometries[14] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 24.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box3
 	*/
 	//OGGETTI
-	geometries[5] = Geometry(PLANE, materialLight, vec3(0.0), 0.0f, vec3(3.0, 9, 3.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 4.0, 4.0); //luce
+	/*
+	geometries[5] = Geometry(PLANE, materialLight, vec3(0.0), 0.0f, vec3(3.0, 9.99, 3.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 4.0, 4.0); //luce
 	geometries[6] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 2.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //green ball
 	geometries[6].material.color = vec4(0.0, 1.0, 0.0, 1.0);
 	geometries[6].material.smoothness = 0.2;
@@ -406,6 +407,17 @@ void main() {
 	geometries[8] = Geometry(SPHERE,  material, vec3(3.0f, 1.5f, 5.0f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //transparent ball
 	geometries[8].material.color = vec4(1.0, 1.0, 1.0, 0.0); //dovrebbe essere trasparente però
 	geometries[8].material.dieletricConstant = 1.5; //simuliamo il vetro
+	*/
+	geometries[5] = Geometry(SPHERE,  materialLight, vec3(5.0f, 7.0f, 17.0f), 1.0f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //light
+	geometries[6] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(2.0, 1.0, 12.00001), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 6.0, 8.0); //lato sinistro mirror
+	geometries[6].material.color = vec4(0.0, 0.0, 1.0, 1.0);
+	geometries[6].material.smoothness = 1;
+	geometries[7] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(2.0, 1.0, 21.99999), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 6.0, 8.0); //lato destro mirror
+	geometries[7].material.color = vec4(0.0, 0.0, 1.0, 1.0);
+	geometries[7].material.smoothness = 1;
+	geometries[8] = Geometry(SPHERE,  material, vec3(5.0f, 2.0f, 17.0f), 1.0f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //red ball
+	geometries[8].material.color = vec4(1.0, 1.0, 0.0, 1.0);
+	geometries[8].material.smoothness = 0.7;
 
 	
 	
@@ -429,6 +441,6 @@ void main() {
 	
 	//vec3 newColor = pow(totalLight.rgb, vec3(1/2.2)); //gamma correction
 	vec4 oldColor = vec4(texture(tex, fragUV).rgb, 1.0f);
-	int N = min(10, gubo.numberOfSamples);
+	int N = min(500, gubo.numberOfSamples); //cambiato qui per risoluzione migliore
 	outColor = (oldColor * (N) + totalLight) / (N+1); 	
 }
