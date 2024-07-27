@@ -13,14 +13,15 @@ struct UniformBufferObject {
 
 struct GlobalUniformBufferObject {
 	alignas(16) int numberOfSamples;
-	alignas(16) int width;
-	alignas(16) int height;
+	alignas(16) int currBox;
 };
 
 
 // Vertex struct
 struct Vertex {
 	glm::vec3 pos;
+	glm::vec2 UV;
+	glm::vec3 norm;
 };
 
 
@@ -46,18 +47,21 @@ protected:
 
 	// Models, textures and Descriptor Sets (values assigned to the uniforms)
 	Model Mtri;
+	Model Mdiamond;
 	Texture Timage;
 
 
 	DescriptorSet DSray, DSGlobal; // Even if we have just one object, since we have two DSL, we also need two sets.
 
 	int numberOfSamples = -1; //così diventa 0 e non do peso a quello salvato all'inizio nella texture
+	int currentBox = 0;
+	bool pressed = false;
 
 	// Other application parameters
 	int currScene = 0;
 	int subpass = 0;
 
-	glm::vec3 CamPos = glm::vec3(-10.0, 5, 7.0);
+	glm::vec3 CamPos = glm::vec3(-21.0, 5, 16.0);
 	float CamAlpha = glm::radians(-75.0f);
 	float CamBeta = glm::radians(-10.0f);
 	float Ar;
@@ -69,8 +73,8 @@ protected:
 
 	/* Main application parameters */
 	void setWindowParameters() {
-		windowWidth = 800;
-		windowHeight = 600;
+		windowWidth = 960;
+		windowHeight = 540;
 		windowTitle = "GraphicsProject";
 		windowResizable = GLFW_TRUE;
 		initialBackgroundColor = { 0.1f, 0.1f, 0.1f, 1.0f };
@@ -100,7 +104,9 @@ protected:
 		VD.init(this, {
 				  {0, sizeof(Vertex), VK_VERTEX_INPUT_RATE_VERTEX}
 			}, {
-			  {0, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, pos), sizeof(glm::vec3), POSITION}
+			  {0, 0, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, pos), sizeof(glm::vec3), POSITION}, //ci serve solo questo in teoria per il full screen quad
+			  {0, 1, VK_FORMAT_R32G32_SFLOAT, offsetof(Vertex, UV), sizeof(glm::vec2), UV},
+			  {0, 2, VK_FORMAT_R32G32B32_SFLOAT, offsetof(Vertex, norm), sizeof(glm::vec3), NORMAL}
 			});
 
 
@@ -110,6 +116,7 @@ protected:
 		Pray.setAdvancedFeatures(VK_COMPARE_OP_LESS, VK_POLYGON_MODE_FILL, VK_CULL_MODE_NONE, false);
 
 		// Models
+		Mdiamond.init(this, &VD, "models/Diamond_Green.mgcg", MGCG);
 
 		//cover the screen with 2 triangles
 		std::vector<Vertex> quadVertices = {
@@ -181,6 +188,7 @@ protected:
 		// Cleanup Models and Textures
 		Mtri.cleanup();
 		Timage.cleanup();
+		Mdiamond.cleanup();
 
 		// Cleanup Descriptor Set Layouts
 		DSLray.cleanup();
@@ -207,6 +215,9 @@ protected:
 		DSray.bind(commandBuffer, Pray, 1, currentImage);	// The Material and Position Descriptor Set (Set 1)
 		vkCmdDrawIndexed(commandBuffer, static_cast<uint32_t>(Mtri.indices.size()), 1, 0, 0, 0);
 
+
+		Mdiamond.bind(commandBuffer);
+		vkCmdDrawIndexed(commandBuffer, static_cast<uint32_t>(Mdiamond.indices.size()), 1, 0, 0, 0);
 	}
 
 
@@ -219,7 +230,7 @@ protected:
 
 		if (m != glm::vec3(0.0f, 0.0f, 0.f) || r != glm::vec3(0.0f, 0.0f, 0.f)) {
 			numberOfSamples = 0; //in questo caso ci serve = 0 almeno nella shader la media pesata non considera il previous frame (perchè ci stiamo muovendo)
-			std::cout << "moving" << "\n";
+			//std::cout << "moving" << "\n";
 		}
 
 		static float autoTime = true;
@@ -251,10 +262,23 @@ protected:
 
 
 		// Standard procedure to quit when the ESC key is pressed
-		if (glfwGetKey(window, GLFW_KEY_ESCAPE)) {
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE) ) {
 			glfwSetWindowShouldClose(window, GL_TRUE);
 		}
 
+		if (glfwGetKey(window, GLFW_KEY_SPACE)) {
+			if (!pressed) {
+				pressed = true;
+				currentBox = (currentBox + 1) % 3;
+				numberOfSamples = 0;
+			}
+		}
+		else {
+			if (pressed) {
+				pressed = false;
+			}
+		}
+		std::cout << currentBox;
 
 		// Here is where you actually update your uniforms
 		glm::mat4 M = glm::perspective(glm::radians(45.0f), Ar, 0.1f, 50.0f);
@@ -271,8 +295,7 @@ protected:
 		// Global
 		GlobalUniformBufferObject gubo{};
 		gubo.numberOfSamples = numberOfSamples;
-		gubo.height = windowHeight;
-		gubo.width = windowWidth;
+		gubo.currBox = currentBox;
 		DSGlobal.map(currentImage, &gubo, 0);
 		numberOfSamples += 1;
 		//std::cout << numberOfSamples << "\n";
