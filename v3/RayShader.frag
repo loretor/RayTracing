@@ -19,7 +19,6 @@ layout(location = 0) out vec4 outColor;
 
 layout(set = 0, binding = 0) uniform GlobalUniformBufferObject {
 	int numberOfSamples;
-	int currBox;
 } gubo;
 	
 layout(set = 0, binding = 1) uniform sampler2D tex;
@@ -28,6 +27,7 @@ layout(set = 1, binding = 0) uniform UniformBufferObject {
     vec3 cameraPos; // Posizione della camera
     mat4 invViewMatrix; // Matrice di vista inversa
     mat4 invProjectionMatrix; // Matrice di proiezione inversa
+	int currBox;
 } ubo;
 
 struct Ray {
@@ -437,10 +437,10 @@ void main() {
 	
 	//scegli il box da visualizzare
 	Geometry[9] chosenBox;
-	if(gubo.currBox == 0){
+	if(ubo.currBox == 0){
 		chosenBox = boxA;
 	}
-	else if(gubo.currBox == 1){
+	else if(ubo.currBox == 1){
 		chosenBox = boxB;
 	}
 	else{

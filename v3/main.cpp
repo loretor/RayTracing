@@ -9,11 +9,11 @@ struct UniformBufferObject {
 	alignas(16) glm::vec3 cameraPos;
 	alignas(16) glm::mat4 invViewMatrix;
 	alignas(16) glm::mat4 invProjectionMatrix;
+	alignas(16) int currBox;
 };
 
 struct GlobalUniformBufferObject {
 	alignas(16) int numberOfSamples;
-	alignas(16) int currBox;
 };
 
 
@@ -278,7 +278,7 @@ protected:
 				pressed = false;
 			}
 		}
-		std::cout << currentBox;
+		//std::cout << currentBox;
 
 		// Here is where you actually update your uniforms
 		glm::mat4 M = glm::perspective(glm::radians(45.0f), Ar, 0.1f, 50.0f);
@@ -295,7 +295,7 @@ protected:
 		// Global
 		GlobalUniformBufferObject gubo{};
 		gubo.numberOfSamples = numberOfSamples;
-		gubo.currBox = currentBox;
+		
 		DSGlobal.map(currentImage, &gubo, 0);
 		numberOfSamples += 1;
 		//std::cout << numberOfSamples << "\n";
@@ -305,6 +305,7 @@ protected:
 		ubo.cameraPos = CamPos;
 		ubo.invViewMatrix = glm::inverse(Mv);
 		ubo.invProjectionMatrix = glm::inverse(M);
+		ubo.currBox = currentBox;
 
 		DSray.map(currentImage, &ubo, 0);
 	}
