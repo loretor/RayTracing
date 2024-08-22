@@ -374,79 +374,68 @@ void main() {
 	
 	// Definizione di oggetti    
 	
-	Geometry boxA[9];
+	Geometry box[9];
 	//BOX1
-	boxA[0] = Geometry(PLANE,  material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box1
-	boxA[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box1
-	boxA[1].material.color = vec4(1.0, 0.0, 0.0, 1.0);
-	boxA[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 10.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box1
-	boxA[2].material.color = vec4(0.0, 1.0, 0.0, 1.0);
-	boxA[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 0.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box1
-	boxA[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 0.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box1//OGGETTI
-	//NEL BOX1
-	boxA[5] = Geometry(PLANE, materialLight, vec3(0.0), 0.0f, vec3(3.0, 9.99, 3.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 4.0, 4.0); //luce
-	boxA[6] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 2.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //green ball
-	boxA[6].material.color = vec4(0.0, 1.0, 0.0, 1.0);
-	boxA[6].material.smoothness = 0.2;
-	boxA[7] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 7.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //red ball
-	boxA[7].material.color = vec4(1.0, 0.0, 0.0, 1.0);
-	boxA[7].material.smoothness = 0.9;
-	boxA[8] = Geometry(NULL, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), 0.0, 0.0); //null box
-	
-	Geometry boxB[9];
-	//BOX2
-	boxB[0] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box2
-	boxB[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box2
-	boxB[1].material.color = vec4(1.0, 0.0, 0.0, 1.0);
-	boxB[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 22.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box2
-	boxB[2].material.color = vec4(0.0, 1.0, 0.0, 1.0);
-	boxB[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 12.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box2
-	boxB[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 12.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box2
-	//NEL BOX2
-	boxB[5] = Geometry(PLANE, materialLight, vec3(0.0), 0.0f, vec3(3.0, 9.99, 15.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 4.0, 4.0); //luce
-	boxB[6] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 14.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //green ball
-	boxB[6].material.color = vec4(0.0, 1.0, 0.0, 1.0);
-	boxB[6].material.smoothness = 0.2;
-	boxB[7] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 19.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //red ball
-	boxB[7].material.color = vec4(1.0, 0.0, 0.0, 1.0);
-	boxB[8].material.smoothness = 0.9;
-	boxB[8] = Geometry(SPHERE,  material, vec3(3.0f, 1.5f, 17.0f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //transparent ball
-	boxB[8].material.color = vec4(1.0, 1.0, 1.0, 0.0);
-	boxB[8].material.dieletricConstant = 1.5;
-	
-	Geometry boxC[9];
-	//BOX3
-	boxC[0] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 24.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box3
-	boxC[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 24.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box3
-	boxC[1].material.color = vec4(1.0, 1.0, 1.0, 1.0);
-	boxC[1].material.smoothness = 1;
-	boxC[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 34.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box3
-	boxC[2].material.color = vec4(1.0, 1.0, 1.0, 1.0);
-	boxC[2].material.smoothness = 1;
-	boxC[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 24.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box3
-	boxC[3].material.color = vec4(0.0, 0.0, 1.0, 1.0);
-	boxC[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 24.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box3	
-	//NEL BOX3
-	boxC[5] = Geometry(SPHERE,  materialLight, vec3(5.0f, 7.0f, 29.0f), 1.0f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //luce
-	boxC[6] = Geometry(SPHERE,  material, vec3(5.0f, 2.0f, 29.0f), 1.0f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //red ball
-	boxC[6].material.color = vec4(1.0, 1.0, 0.0, 1.0);
-	boxC[6].material.smoothness = 0.7;
-	boxC[7] = Geometry(NULL, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), 0.0, 0.0); //null box
-	boxC[8] = Geometry(NULL, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), 0.0, 0.0); //null box
-	
-	
-	//scegli il box da visualizzare
-	Geometry[9] chosenBox;
 	if(ubo.currBox == 0){
-		chosenBox = boxA;
+		box[0] = Geometry(PLANE,  material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box1
+		box[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box1
+		box[1].material.color = vec4(1.0, 0.0, 0.0, 1.0);
+		box[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 10.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box1
+		box[2].material.color = vec4(0.0, 1.0, 0.0, 1.0);
+		box[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 0.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box1
+		box[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 0.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box1//OGGETTI
+		//NEL BOX1
+		box[5] = Geometry(PLANE, materialLight, vec3(0.0), 0.0f, vec3(3.0, 9.99, 3.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 4.0, 4.0); //luce
+		box[6] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 2.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //green ball
+		box[6].material.color = vec4(0.0, 1.0, 0.0, 1.0);
+		box[6].material.smoothness = 0.2;
+		box[7] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 7.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //red ball
+		box[7].material.color = vec4(1.0, 0.0, 0.0, 1.0);
+		box[7].material.smoothness = 0.9;
+		box[8] = Geometry(NULL, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), 0.0, 0.0); //null box
 	}
 	else if(ubo.currBox == 1){
-		chosenBox = boxB;
+		//BOX2
+		box[0] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box2
+		box[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 12.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box2
+		box[1].material.color = vec4(1.0, 0.0, 0.0, 1.0);
+		box[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 22.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box2
+		box[2].material.color = vec4(0.0, 1.0, 0.0, 1.0);
+		box[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 12.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box2
+		box[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 12.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box2
+		//NEL BOX2
+		box[5] = Geometry(PLANE, materialLight, vec3(0.0), 0.0f, vec3(3.0, 9.99, 15.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 4.0, 4.0); //luce
+		box[6] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 14.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //green ball
+		box[6].material.color = vec4(0.0, 1.0, 0.0, 1.0);
+		box[6].material.smoothness = 0.2;
+		box[7] = Geometry(SPHERE,  material, vec3(7.0f, 1.5f, 19.5f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //red ball
+		box[7].material.color = vec4(1.0, 0.0, 0.0, 1.0);
+		box[8].material.smoothness = 0.9;
+		box[8] = Geometry(SPHERE,  material, vec3(3.0f, 1.5f, 17.0f), 1.5f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //transparent ball
+		box[8].material.color = vec4(1.0, 1.0, 1.0, 0.0);
+		box[8].material.dieletricConstant = 1.5;
 	}
 	else{
-		chosenBox = boxC;
+		//BOX3
+		box[0] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 24.0), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //basso box3
+		box[1] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 24.0), vec3(0.0f, 0.0f, 1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato sinistro box3
+		box[1].material.color = vec4(1.0, 1.0, 1.0, 1.0);
+		box[1].material.smoothness = 1;
+		box[2] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 34.0), vec3(0.0f, 0.0f, -1.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //lato destro box3
+		box[2].material.color = vec4(1.0, 1.0, 1.0, 1.0);
+		box[2].material.smoothness = 1;
+		box[3] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(10.0, 0.0, 24.0), vec3(-1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), vec3(0.0f, 1.0f, 0.0f), 10.0, 10.0); //fondo box3
+		box[3].material.color = vec4(0.0, 0.0, 1.0, 1.0);
+		box[4] = Geometry(PLANE, material, vec3(0.0), 0.0f, vec3(0.0, 10.0, 24.0), vec3(0.0f, -1.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 1.0f), 10.0, 10.0); //alto box3	
+		//NEL BOX3
+		box[5] = Geometry(SPHERE,  materialLight, vec3(5.0f, 7.0f, 29.0f), 1.0f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //luce
+		box[6] = Geometry(SPHERE,  material, vec3(5.0f, 2.0f, 29.0f), 1.0f, vec3(0.0), vec3(0.0), vec3(0.0), vec3(0.0), 0.0, 0.0); //red ball
+		box[6].material.color = vec4(1.0, 1.0, 0.0, 1.0);
+		box[6].material.smoothness = 0.7;
+		box[7] = Geometry(NULL, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), 0.0, 0.0); //null box
+		box[8] = Geometry(NULL, material, vec3(0.0), 0.0f, vec3(0.0, 0.0, 0.0), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 0.0f, 0.0f), 0.0, 0.0); //null box
 	}
-	
+		
 	//Per ogni pixel castiamo 100 ray e vediamo se la resolution migliora
 	vec4 totalLight = vec4(0.0f);
 	int rayPerPixel = 3;
@@ -459,7 +448,7 @@ void main() {
 		
 		ray.direction = UVtoRayDirection(jitteredUV);
 		
-		totalLight += rayCasting(ray, randomState, chosenBox);
+		totalLight += rayCasting(ray, randomState, box);
 	}
 	totalLight /= rayPerPixel;
 	
