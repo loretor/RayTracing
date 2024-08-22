@@ -7,3 +7,7 @@ Below is a series of images that illustrate the evolution of our project.
 <p align="center">
   <img src="https://github.com/loretor/RayTracing/blob/main/v1/Immagine.jpg" />
 </p>
+
+<p align="center">
+  <img src="https://github.com/loretor/RayTracing/blob/main/v2/finalResult.jpg" />
+</p>
